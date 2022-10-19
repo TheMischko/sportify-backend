@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
+import { Model } from 'objection';
 
 import { MOCKS, PORT } from './config/variables';
 import { getConnection } from './libs/connection';
@@ -14,6 +15,7 @@ const main = async () => {
   app.use(cors());
 
   const dbConnection = MOCKS ? null : await getConnection();
+  if (dbConnection) Model.knex(dbConnection);
 
   const apolloServer = new ApolloServer({
     schema,

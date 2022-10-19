@@ -27,7 +27,8 @@
     "knex": "^2.3.0",
     "lodash.merge": "^4.6.2",
     "mariadb": "^3.0.1",
-    "mysql2": "^2.3.3"
+    "mysql2": "^2.3.3",
+    "objection": "^3.0.1"
   },
   "devDependencies": {
     "backpack-core": "^0.8.4",

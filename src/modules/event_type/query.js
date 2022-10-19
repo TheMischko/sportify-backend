@@ -1,7 +1,6 @@
-export const eventTypes = () => {
-    return [{
-        id: 1,
-        name: "Testovací event",
-        key: "testEvent"
-    }]
+import { EventTypeModel } from "./model"
+
+export const eventTypes = async () => {
+    const eventTypes = await EventTypeModel.query()
+    return eventTypes.slice(0, 20)
 }
