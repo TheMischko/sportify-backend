@@ -26,7 +26,10 @@ Open [http://localhost:4000](http://localhost:4000) to view it in the browser.
 
 ## Seed Database
 
-Using phpMyAdmin or MySQL Workbench run following SQL: [`./db/seed.sql`](./db/seed.sql)
+To seed a new database you have to run this command:
+```bash
+npx knex seed:run
+```
 
 ## Run Production
 

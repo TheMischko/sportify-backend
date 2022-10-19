@@ -24,8 +24,10 @@
     "express": "^4.17.1",
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^2.3.0",
     "lodash.merge": "^4.6.2",
-    "mariadb": "^3.0.1"
+    "mariadb": "^3.0.1",
+    "mysql2": "^2.3.3"
   },
   "devDependencies": {
     "backpack-core": "^0.8.4",

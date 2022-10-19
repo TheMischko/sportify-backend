@@ -1,27 +1,16 @@
 import mariadb from 'mariadb';
-import {
-  DB_HOST,
-  DB_PORT,
-  DB_USER,
-  DB_PASSWORD,
-  DB_NAME,
-} from '../config/variables';
+import knex from 'knex';
+import knexfile from '../../knexfile'
 
-export const getConnection = async () => {
-  try {
-    let conn;
-    if (!conn) {
-      conn = await mariadb.createConnection({
-        host: DB_HOST,
-        port: DB_PORT,
-        user: DB_USER,
-        password: DB_PASSWORD,
-        database: DB_NAME,
-      });
-    }
+/**
+ * 
+ * @returns knex
+ */
+export const getConnection = () => {
+  try{
+    const conn = knex(knexfile["development"])
     return conn;
   } catch (err) {
     console.log('err', err);
-    throw err;
   }
-};
+}
