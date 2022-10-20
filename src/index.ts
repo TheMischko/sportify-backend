@@ -2,10 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import { ApolloServer } from 'apollo-server-express';
 import { ApolloServerPluginLandingPageGraphQLPlayground } from 'apollo-server-core';
-import { Model } from 'objection';
+import { PrismaClient } from '@prisma/client'
 
 import { MOCKS, PORT } from './config/variables';
-import { getConnection } from './libs/connection';
 import { schema } from './modules/executableSchema';
 
 const main = async () => {
@@ -14,18 +13,19 @@ const main = async () => {
   app.disable('x-powered-by');
   app.use(cors());
 
-  const dbConnection = MOCKS ? null : await getConnection();
-  if (dbConnection) Model.knex(dbConnection);
+  const prisma = new PrismaClient()
 
   const apolloServer = new ApolloServer({
     schema,
     context: async ({ req }) => {
       const auth = req.headers.Authorization || '';
 
-      return {
-        dbConnection,
+      const context:Context = {
+        prisma,
         auth,
-      };
+      }
+
+      return context;
     },
     plugins: [ApolloServerPluginLandingPageGraphQLPlayground()],
   });
